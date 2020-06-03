@@ -11,3 +11,79 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* --------------------FrontEnd Page------------------------*/
+.frontContent {
+  color:grey;
+  font-size: 40px;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 8px;
+
+}
+.registerButton {
+  display:flex;
+  flex-direction: column;
+  padding-top: 21px;
+}
+.loginButton {
+  display:flex;
+  /* flex-direction: column; */
+  margin-left:20px;
+  margin-bottom: 8px;
+  /* padding-top: 21px; */
+}
+
+.setCard {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.outsideCard{ 
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.headerTag {
+  margin-left: 18px;
+}
+
+.textFields {
+  display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.emailField
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+  margin-right: 24px;
+  }
+.buttons {
+   display:flex;
+   justify-content: space-around;
+   margin-bottom: 20px;
+   margin-top: 12px;
+ }
+ .loginText {
+   display:flex;
+   flex-direction: column;
+   margin-left: 100px;
+   margin-right:100px;
+ }
+ .homeHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ }
+ .userDetailHeader {
+   margin-left: 30px;
+ }
+ .editButton {
+ display: flex;
+ flex-direction: row;
+ margin-left: 100px;
+ }
