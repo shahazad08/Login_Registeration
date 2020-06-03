@@ -14,7 +14,7 @@ class FrontPage extends Component {
             <div className="outsideCard">
                 
             <div className="setCard">
-            <h1>Welcome to My First Page</h1>
+            <h1>Welcome to Analytics Fox Software Pvt.Ltd</h1>
             <Card>
             <div >
                 <div className="frontContent">

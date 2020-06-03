@@ -40,7 +40,6 @@ function mapStateToProps(state){
         email:state.Register.email,
         phoneNumber:state.Register.phoneNumber,
         password:state.Register.password,
-        // confirmPassword:state.Register.confirmPassword
     }
 }
 class Register extends Component {
@@ -52,7 +51,6 @@ class Register extends Component {
             phoneError:"",
             emailError:"",
             passwordError:"",
-            // confirmPasswordError:""
         }
     }
 
@@ -148,30 +146,6 @@ class Register extends Component {
         this.props.inputPassword(d)
         }
     }
-    // handleConfirmPasswordChange(event) {
-    //     var x = event.target.value
-    //     if(x.length === 0) {
-    //         this.setState({
-    //             confirmPasswordError:"required"
-    //         })
-    //     }
-    //     else if(x.length <4) {
-    //         this.setState({
-    //             confirmPasswordError:"Password should not be less than 4 characters"
-    //         })
-    //     }
-    //     else if(x.length >8) {
-    //         this.setState({
-    //             confirmPasswordError:"Password should not be more than 8 characters"
-    //         })
-    //     }
-    //     else {
-    //         this.setState({
-    //             confirmPasswordError:""
-    //         })
-    //     this.props.inputConfirmPassword(x)
-    //     }
-    // }
     handleInputContactChange(event) {
         var e = event.target.value
         if(e.length===0){
@@ -306,19 +280,6 @@ class Register extends Component {
                         helperText={this.state.passwordError}
 
                     />
-                       {/* <TextField
-                        id="standard-name"
-                        label="Confirm Password"
-                        input="confirm password"
-                        variant="outlined"
-                        type="password"
-                        margin="normal"
-                        // value={this.props.confirmPassword}
-                        onChange={(event)=>{this.handleConfirmPasswordChange(event)}}
-                        error={this.state.confirmPasswordError}
-                        helperText={this.state.confirmPasswordError}
-
-                    /> */}
                     </div>
                   <div className="buttons">
                     <div>

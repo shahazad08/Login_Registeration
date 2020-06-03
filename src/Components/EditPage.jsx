@@ -284,19 +284,6 @@ class EditPage extends Component {
                         helperText={this.state.passwordError}
 
                     />
-                       {/* <TextField
-                        id="standard-name"
-                        label="Confirm Password"
-                        input="confirm password"
-                        variant="outlined"
-                        type="password"
-                        margin="normal"
-                        // value={this.props.confirmPassword}
-                        onChange={(event)=>{this.handleConfirmPasswordChange(event)}}
-                        error={this.state.confirmPasswordError}
-                        helperText={this.state.confirmPasswordError}
-
-                    /> */}
                     </div>
                   <div className="buttons">
                     <div>
