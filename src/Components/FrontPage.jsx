@@ -12,20 +12,25 @@ class FrontPage extends Component {
     render() {
         return(
             <div className="outsideCard">
+                
             <div className="setCard">
+            <h1>Welcome to My First Page</h1>
             <Card>
-            <div>
+            <div >
                 <div className="frontContent">
-                Welcome to My First Page
+                
 
                 </div>
                 <div className="registerButton">
-                <Button color="primary" onClick={()=>this.registerClick()}>Register</Button>
+                <Button onClick={()=>this.registerClick()}>Register</Button>
                 </div>
                 <div className="loginButton">
-                <Button color="primary" onClick={()=>this.loginClick()}>Login</Button>
+                <Button  onClick={()=>this.loginClick()}>Login</Button>
                 </div>
+
             </div>
+
+            
             </Card>
             </div>
             </div>

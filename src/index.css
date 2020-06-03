@@ -24,13 +24,24 @@ code {
 .registerButton {
   display:flex;
   flex-direction: column;
-  padding-top: 21px;
+  padding: 21px;
+  background-color:dodgerblue;
+  margin-bottom:11px
+  
+  
+}
+
+.registerButton button, .loginButton button{
+  color: #f7f7f7;
+  font-size:17px
 }
 .loginButton {
   display:flex;
   /* flex-direction: column; */
-  margin-left:20px;
-  margin-bottom: 8px;
+  display:flex;
+  flex-direction: column;
+  padding: 21px;
+  background-color:seagreen;
   /* padding-top: 21px; */
 }
 
@@ -38,12 +49,17 @@ code {
   display: flex;
   flex-direction: column;
   width: 40%;
+  align-self:center;
+  text-align: center;
 }
+
+
 .outsideCard{ 
   display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 50px;
+    width:100%
 }
 
 .headerTag {
@@ -67,11 +83,14 @@ code {
    justify-content: space-around;
    margin-bottom: 20px;
    margin-top: 12px;
+   color:#ffffff
  }
+
+
  .loginText {
    display:flex;
    flex-direction: column;
-   margin-left: 100px;
+   margin-left: 100px;;
    margin-right:100px;
  }
  .homeHeader {
@@ -87,3 +106,13 @@ code {
  flex-direction: row;
  margin-left: 100px;
  }
+
+ .outsideCard {
+  background-color:#f7f7f7;
+  height:100vh
+ }
+
+ .setCard h1{
+  font-size:35px !important;
+  text-transform: uppercase;
+}
