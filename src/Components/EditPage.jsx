@@ -21,9 +21,6 @@ const mapDispatchToProps=dispatch=>({
     inputPassword:(value)=>dispatch({
         type:INPUT_PASSWORD, payload:value
     }),
-    // inputConfirmPassword:(value)=>dispatch({
-    //     type:INPUT_CONFIRM_PASSWORD, payload:value
-    // }),
     inputPhoneNumber:(value)=>dispatch({
         type:INPUT_CONTACT_NUMBER, payload:value
     }),
@@ -52,6 +49,11 @@ class EditPage extends Component {
             phoneError:"",
             emailError:"",
             passwordError:"",
+            checkEmail:false,
+            checkNumber:false,
+            checkName:false,
+            checklastName:false,
+            checkPassword:false
             // confirmPasswordError:""
         }
     }
@@ -64,22 +66,26 @@ class EditPage extends Component {
         var a = event.target.value
         if(a.length === 0) {
             this.setState({
-                nameError:"required"
+                nameError:"required",
+                checkName:true
             })
         }
         else if(a.length <4) {
             this.setState({
-                nameError:"Minimum 4 characters required"
+                nameError:"Minimum 4 characters required",
+                checkName:true
             })
         }
         else if(a.length >=10) {
             this.setState({
-                nameError:"Minimum 8 characters required"
+                nameError:"Minimum 8 characters required",
+                checkName:true
             })
         }
         else {
             this.setState({
-                nameError:""
+                nameError:"",
+                checkName:false
             })
         }
         this.props.inputName(a)
@@ -87,27 +93,31 @@ class EditPage extends Component {
      
     handleLastNameChange(event) {
         var b = event.target.value
-        if(b.length === 0) {
+        if(b.length == -1) {
             this.setState({
-                lastNameError:"required"
+                lastNameError:"required",
+                checklastName:true
             })
         }
         else if(b.length <4) {
             this.setState({
-                lastNameError:"Minimum 4 characters required"
+                lastNameError:"Minimum 4 characters required",
+                checklastName:true
             })
         }
         else if(b.length >=10) {
             this.setState({
-                lastNameError:"Minimum 8 characters required"
+                lastNameError:"Minimum 8 characters required",
+                checklastName:true
             })
         }
         else {
             this.setState({
-                lastNameError:""
+                lastNameError:"",
+                checklastName:false
             })
-        this.props.inputLastName(b)
         }
+        this.props.inputLastName(b)
     }
     handleEmailChange(event) {
         var c = event.target.value
@@ -116,12 +126,14 @@ class EditPage extends Component {
         console.log("emailValidate", emailValidate)
         if (emailValidate === false) {
             this.setState({
-                emailError:"PLease write a validate email address"
+                emailError:"PLease write a validate email address",
+                checkEmail:true
             })
         }
         else {
             this.setState({
-                emailError:""
+                emailError:"",
+                checkEmail:false
             })
         }
         this.props.inputEmail(c)
@@ -129,63 +141,73 @@ class EditPage extends Component {
 
     handlePasswordChange(event) {
         var d = event.target.value
-        if(d.length === 0) {
+        if(d.length === -1) {
             this.setState({
-                passwordError:"required"
+                passwordError:"required",
+                checkPassword:true
             })
         }
         else if(d.length <4) {
             this.setState({
-                passwordError:"Password should not be less than 4 characters"
+                passwordError:"Password should not be less than 4 characters",
+                checkPassword:true
             })
         }
         else if(d.length >8) {
             this.setState({
-                passwordError:"Password should not be more than 8 characters"
+                passwordError:"Password should not be more than 8 characters",
+                checkPassword:true
             })
         }
         else {
             this.setState({
-                passwordError:""
+                passwordError:"",
+                checkPassword:false
             })
-        this.props.inputPassword(d)
         }
+        this.props.inputPassword(d)
     }
     handleInputContactChange(event) {
         var e = event.target.value
         if(e.length===0){
             this.setState({
-                phoneError:"required"
+                phoneError:"required",
+                checkNumber:true
             })}
             else if(e.length<10){
                 this.setState({
-                    phoneError:" Only 10 Nos are required"
+                    phoneError:" Only 10 Nos are required",
+                    checkNumber:true
                 })}
             else if(e.length>10){
                 this.setState({
-                    phoneError:"Min 10 Nos are required"
+                    phoneError:"Min 10 Nos are required",
+                    checkNumber:true
                 })
             }
             else if(isNaN(e))
             {
                 this.setState({
-                    phoneError:"Enter Valid Nos Only"
+                    phoneError:"Enter Valid Nos Only",
+                    checkNumber:true
                 })
             }
             else if((e.charAt(0)!=9) && (e.charAt(0)!=8) && (e.charAt(0)!=7)){
                 this.setState({
-                    phoneError:"Numbers should start with 9,8,7"
+                    phoneError:"Numbers should start with 9,8,7",
+                    checkNumber:true
                 })
             }
             else{
                 this.setState({
-                    phoneError:""
+                    phoneError:"",
+                    checkNumber:false
                 })
             }
             this.props.inputPhoneNumber(e)
     }
     save() {
-        if (this.props.name!=="" && this.props.lastName!=="" && this.props.email!=="" && this.props.phoneNumber!=="" && this.props.password!=="")
+        if (this.props.name!=="" && this.props.lastName!=="" && this.props.email!=="" && this.props.phoneNumber!=="" && this.props.password!=="" && this.state.checkName === false && this.state.checklastName === false && this.state.checkNumber === false && this.state.checkEmail === false && this.state.checkPassword === false)
         {
             var data={
                 name:this.props.name,
@@ -197,6 +219,7 @@ class EditPage extends Component {
         
         console.log("rrrr=>>",data);
         alert('Updated Successfull')
+
         // <Toast >Register Successfull</Toast>
         
         this.props.Register(data)
@@ -213,7 +236,7 @@ class EditPage extends Component {
             <div className="setCard"> 
                 <Card>
                     <div className="headerTag">
-                    <h2>Create Your Account</h2>
+                    <h2>Update Account</h2>
                     </div>
                   
                         <div className="textFields">
@@ -232,7 +255,6 @@ class EditPage extends Component {
                        <TextField
                         id="standard-name"
                         label="Last Name"
-                        // value={this.props.name}
                         input="Last Name"
                         variant="outlined"
                         type="name"
@@ -278,7 +300,7 @@ class EditPage extends Component {
                         variant="outlined"
                         type="password"
                         margin="normal"
-                        // value={this.props.password}
+                        value={this.props.password}
                         onChange={(event)=>{this.handlePasswordChange(event)}}
                         error={this.state.passwordError}
                         helperText={this.state.passwordError}

@@ -21,9 +21,6 @@ const mapDispatchToProps=dispatch=>({
     inputPassword:(value)=>dispatch({
         type:INPUT_PASSWORD, payload:value
     }),
-    // inputConfirmPassword:(value)=>dispatch({
-    //     type:INPUT_CONFIRM_PASSWORD, payload:value
-    // }),
     inputPhoneNumber:(value)=>dispatch({
         type:INPUT_CONTACT_NUMBER, payload:value
     }),
@@ -51,6 +48,11 @@ class Register extends Component {
             phoneError:"",
             emailError:"",
             passwordError:"",
+            checkEmail:true,
+            checkNumber:true,
+            checkName:true,
+            checklastName:true,
+            checkPassword:true
         }
     }
 
@@ -62,22 +64,26 @@ class Register extends Component {
         var a = event.target.value
         if(a.length === 0) {
             this.setState({
-                nameError:"required"
+                nameError:"required",
+                checkName:false
             })
         }
         else if(a.length <4) {
             this.setState({
-                nameError:"Minimum 4 characters required"
+                nameError:"Minimum 4 characters required",
+                checkName:false
             })
         }
         else if(a.length >=10) {
             this.setState({
-                nameError:"Minimum 8 characters required"
+                nameError:"Minimum 8 characters required",
+                checkName:false
             })
         }
         else {
             this.setState({
-                nameError:""
+                nameError:"",
+                checkName:true
             })
         }
         this.props.inputName(a)
@@ -89,34 +95,40 @@ class Register extends Component {
         var b = event.target.value
         if(b.length === 0) {
             this.setState({
-                lastNameError:"required"
+                lastNameError:"required",
+                checklastName:false
+
             })
         }
         else if(b.length >10) {
             this.setState({
-                lastNameError:"Minimum 8 characters required"
+                lastNameError:"Minimum 8 characters required",
+                checklastName:false
+
             })
         }
         else {
             this.setState({
-                lastNameError:""
+                lastNameError:"",
+                checklastName:true
             })
-        this.props.inputLastName(b)
         }
+        this.props.inputLastName(b)
     }
     handleEmailChange(event) {
         var c = event.target.value
         const regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var emailValidate = regexp.test(c)
-        console.log("emailValidate", emailValidate)
         if (emailValidate === false) {
             this.setState({
-                emailError:"PLease write a validate email address"
+                emailError:"PLease write a validate email address",
+                checkEmail:false
             })
         }
         else {
             this.setState({
-                emailError:""
+                emailError:"",
+                checkEmail:true
             })
         }
         this.props.inputEmail(c)
@@ -126,61 +138,73 @@ class Register extends Component {
         var d = event.target.value
         if(d.length === 0) {
             this.setState({
-                passwordError:"required"
+                passwordError:"required",
+                checkPassword:false
             })
         }
         else if(d.length <4) {
             this.setState({
-                passwordError:"Password should not be less than 4 characters"
+                passwordError:"Password should not be less than 4 characters",
+                checkPassword:false
             })
         }
         else if(d.length >8) {
             this.setState({
-                passwordError:"Password should not be more than 8 characters"
+                passwordError:"Password should not be more than 8 characters",
+                checkPassword:false
             })
         }
         else {
             this.setState({
-                passwordError:""
+                passwordError:"",
+                checkPassword:true
             })
-        this.props.inputPassword(d)
         }
+        this.props.inputPassword(d)
     }
     handleInputContactChange(event) {
         var e = event.target.value
         if(e.length===0){
             this.setState({
-                phoneError:"required"
+                phoneError:"required",
+                checkNumber:false
+                
             })}
             else if(e.length<10){
                 this.setState({
-                    phoneError:" Only 10 Nos are required"
+                    phoneError:" Only 10 Nos are required",
+                    checkNumber:false
+
                 })}
             else if(e.length>10){
                 this.setState({
-                    phoneError:"Min 10 Nos are required"
+                    phoneError:"Min 10 Nos are required",
+                    checkNumber:false
                 })
             }
             else if(isNaN(e))
             {
                 this.setState({
-                    phoneError:"Enter Valid Nos Only"
+                    phoneError:"Enter Valid Nos Only",
+                    checkNumber:false
                 })
             }
             else if((e.charAt(0)!=9) && (e.charAt(0)!=8) && (e.charAt(0)!=7)){
                 this.setState({
-                    phoneError:"Numbers should start with 9,8,7"
+                    phoneError:"Numbers should start with 9,8,7",
+                    checkNumber:false
                 })
             }
             else{
                 this.setState({
-                    phoneError:""
+                    phoneError:"",
+                    checkNumber:true
                 })
             }
             this.props.inputPhoneNumber(e)
     }
     loginPageRedirect () {
-        if (this.props.name!=="" && this.props.lastName!=="" && this.props.email!=="" && this.props.phoneNumber!=="" && this.props.password!=="")
+        if (this.props.name!=="" && this.props.lastName!=="" && this.props.email!=="" && this.props.phoneNumber!=="" && this.props.password!=="" && this.state.checkNumber && this.state.checkEmail && this.state.checkName  && this.state.checklastName && this.state.checkPassword)
         {
             var data={
                 name:this.props.name,
@@ -188,18 +212,16 @@ class Register extends Component {
                 email:this.props.email,
                 phoneNumber:this.props.phoneNumber,
                 password:this.props.password,
-                confirmPassword:this.props.confirmPassword,
             }
         
         console.log("rrrr=>>",data);
         alert('Register Successfull')
-        // <Toast >Register Successfull</Toast>
-        
+        this.props.history.push('login')
         this.props.Register(data)
-        // this.props.history.push('register')
+        
     }
     else {
-        alert("Fields are empty")
+        alert("PLease Validate the Register Fields")
     }
 }
 

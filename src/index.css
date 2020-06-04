@@ -24,7 +24,7 @@ code {
 .registerButton {
   display:flex;
   flex-direction: column;
-  padding: 21px;
+  
   background-color:dodgerblue;
   margin-bottom:11px
   
@@ -40,7 +40,7 @@ code {
   /* flex-direction: column; */
   display:flex;
   flex-direction: column;
-  padding: 21px;
+  
   background-color:seagreen;
   /* padding-top: 21px; */
 }
@@ -53,7 +53,9 @@ code {
   text-align: center;
 }
 
-
+.setCard img {
+  width:70%
+}
 .outsideCard{ 
   display: flex;
     flex-direction: row;

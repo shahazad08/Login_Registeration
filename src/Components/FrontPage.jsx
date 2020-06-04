@@ -14,6 +14,7 @@ class FrontPage extends Component {
             <div className="outsideCard">
                 
             <div className="setCard">
+                <center><img src={require('../assets/logo-3.png')} ></img></center>
             <h1>Welcome to Analytics Fox Software Pvt.Ltd</h1>
             <Card>
             <div >
